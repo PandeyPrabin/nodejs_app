@@ -1,23 +1,27 @@
 <div>
-        <div>   <a href ="/">Home</a><br>
+     <div>   
+        <a href ="/">Home</a><br>
             <table><tr>
-                    <th>Title</th>
+                    <!-- <th>Title</th>
                     <th>Content</th>
-                    <th>Author</th>
+                    <th>Author</th> -->
+                    <th>List of Authors</th>
                 </tr>
-                <div>
-    <% items.forEach(function(row, i){ %>
-       <tr>
-            <div><td><a href = "/get-data/<%-row.id %>"><%-row.title %></a></td>
+       
+    
+                <% items.forEach(function(row, i){ %>
+            <tr>
+            <td><a href = "/get-data/<%-row.id %>"><%-row.title %></a><br>
+                <a href = "/get-data/<%-row.id %>">Show</a><br><br></td>
+            </tr>
                 <!-- <a href = "/get-data/<%-row.id %>">Show</a>
                 <a href = "/get-data/<%-row.id %>/edit">Edit</a></div> -->
-            <td><%-row.content %></td>
-            <td><%-row.author %></td> 
+            <!-- <td><%-row.content %></td>
+            <td><%-row.author %></td>  -->
             
-    </tr>
-  
-        <% }) %></div>
-    </table>
+            
+            <% }) %>
+            </table>
     </div>
 
 </div>
