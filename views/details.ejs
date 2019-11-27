@@ -1,0 +1,23 @@
+<div>
+        <div>   <a href ="/">Home</a><br>
+            <table><tr>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Author</th>
+                </tr>
+                <div>
+    <% items.forEach(function(row, i){ %>
+       <tr>
+            <div><td><a href = "/get-data/<%-row.id %>"><%-row.title %></a></td>
+                <!-- <a href = "/get-data/<%-row.id %>">Show</a>
+                <a href = "/get-data/<%-row.id %>/edit">Edit</a></div> -->
+            <td><%-row.content %></td>
+            <td><%-row.author %></td> 
+            
+    </tr>
+  
+        <% }) %></div>
+    </table>
+    </div>
+
+</div>
