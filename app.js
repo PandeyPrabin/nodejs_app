@@ -25,6 +25,7 @@ mongoose.connect(mongoDB, {
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json({type: 'application/*+json'}));
 
+
 app.use(express.static(path.join(__dirname + '/static')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -33,9 +34,14 @@ app.set('view engine', 'ejs');
 
 // Require all the route files
 var index = require('./routes/index');
+var register = require('./routes/register');
+var login = require('./routes/login');
+
 
 // All the routes from URL
 app.use('/', index);
+app.use('/login', login);
+app.use('/register', register);
 
 //starting the server
 app.listen(3001, function () {
