@@ -3,12 +3,15 @@ var path = require('path');
 var expressLayouts = require('express-ejs-layouts');
 var nodemailer = require('nodemailer');
 var mongoose = require('mongoose');
-
-var session = require('cookie-session'); // Charge le middleware de sessions
-var bodyParser = require('body-parser'); // Charge le middleware de gestion des paramètres
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var expressValidator = require('express-validator');
 
 var app = express();
+
+var bodyParser = require('body-parser'); // Charge le middleware de gestion des paramètres
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var session = require('cookie-session'); // Charge le middleware de sessions
+
+
 
 //connection to database
 var mongoDB = "mongodb+srv://Prabin:TurkuFinland@prabin-5muhx.mongodb.net/dummy?retryWrites=true&w=majority";
@@ -24,7 +27,6 @@ mongoose.connect(mongoDB, {
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json({type: 'application/*+json'}));
-
 
 app.use(express.static(path.join(__dirname + '/static')));
 app.set('views', path.join(__dirname, 'views'));

@@ -145,27 +145,25 @@
     </style>
     <button type="button" ><a href="/get-data">Details</a></button>
 <div class="container">  
-    <form id="contact" action="/register" method="post">
+    <form id="contact" action="/register/newuser" method="post">
      <h2>Welcome to the register page</h2>
       
       <h4>Contact us for custom quote</h4>
     <fieldset>
-     <input placeholder="Enter your first name" type="text"  name='firstName' required >
-      </fieldset>
-      <input placeholder="Enter your last name" type="text"  name='lastName' required >
+     <input placeholder="Enter your full name" type="text"  name='name' required >
       </fieldset>
       <fieldset>
         <input placeholder="Your Email Address" type="email" name='content' required >
       </fieldset>
       <fieldset>
-        <input placeholder="Your Password" type="tel"  name='author' required >
-      </fieldset>
-     <!-- <fieldset>
-        <input placeholder="Your Web Site (optional)" type="url" tabindex="4" required>
+        <input placeholder="Your Username" type="username" name='username' required >
+      </fieldset> 
+      <fieldset>
+        <input placeholder="Your Password" type="password"  name='password' required >
       </fieldset>
       <fieldset>
-        <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
-      </fieldset>-->
+        <input placeholder="Confirm password" type="password" name='password2' required >
+      </fieldset>
       <fieldset>
         <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Register</button>
       </fieldset>
