@@ -1,16 +1,17 @@
 var express = require('express');
 var path = require('path');
-var expressLayouts = require('express-ejs-layouts');
 var nodemailer = require('nodemailer');
 var mongoose = require('mongoose');
 var expressValidator = require('express-validator');
 
+//const bcrypt = require('bcrypt');
 var app = express();
 
 var bodyParser = require('body-parser'); // Charge le middleware de gestion des paramètres
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json({type: 'application/*+json'}));
 var session = require('cookie-session'); // Charge le middleware de sessions
-
+app.use(expressValidator());
 
 
 //connection to database
@@ -25,13 +26,11 @@ mongoose.connect(mongoDB, {
 });
 
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json({type: 'application/*+json'}));
+
 
 app.use(express.static(path.join(__dirname + '/static')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-//app.use(expressLayouts);
 
 
 // Require all the route files

@@ -1,12 +1,7 @@
 var express = require('express');
-var expressLayouts = require('express-ejs-layouts');
 var router = express.Router();
 const bcrypt = require('bcryptjs');
-const { check, validationResult } = require('express-validator');
-
-
-
-var User = ('../models/user');
+var User = require('../models/user');
 
 
 //register form
@@ -16,8 +11,9 @@ router.get('/register', function(req, res){
 
 });
 
-router.post('/newuser', function(req, res){
 
+router.post('/newuser', function(req, res){
+    console.log(req);
 
 const name =req.body.name;
 const email =req.body.email;
@@ -25,26 +21,17 @@ const username =req.body.username;
 const password =req.body.password;
 const password2 =req.body.password2;
 
-check('name', 'A valid firstname is required').notEmpty();
-check('email', 'A valid firstname is required').notEmpty();
-check('email', 'A valid firstname is required').isEmail();
-check('username', 'A valid firstname is required').notEmpty();
-check('password', 'A valid firstname is required').notEmpty();
-check('password2', 'A valid firstname is required').equals(req.body.password);
+req.checkBody('name', 'Name is required').notEmpty();
+req.checkBody('email', 'Email is required').notEmpty();
+req.checkBody('email', 'Email is not valid').isEmail();
+req.checkBody('username', 'Username is required').notEmpty();
+req.checkBody('password', 'Password is required').notEmpty();
+req.checkBody('password2', 'Passwords donot match').equals(req.body.password); 
 
-/*req.checkbody('name', 'Name is required').notEmpty();
-req.checkbody('email', 'Email is required').notEmpty();
-req.checkbody('email', 'Email is not valid').isEmail();
-req.checkbody('username', 'Username is required').notEmpty();
-req.checkbody('password', 'Password is required').notEmpty();
-req.checkbody('password2', 'Passwords donot match').equals(req.body.password); */
-
-let errors = validationResult(req);
+var errors = req.validationErrors();
 
 if (errors){
-    res.render('register',{
-        errors:errors
-    });
+    res.render(errors)
 }else{
     let newUser = new User({
         name:name,
@@ -52,21 +39,21 @@ if (errors){
         username:username,
         password:password
     });
-    console.log(newUser);
+   
 
-    bcrypt.genSalt(10, function(err, salt){
+    bcrypt.genSalt(10, function(error, salt){
         bcrypt.hash(newUser.password, salt, function(err, hash){
             if(error){
-                console.log(err);
+                console.log(error);
             }
             newUser.password = hash;
-            newUser.save(function(err){
-                if(err){
-                console.log(err);
+            newUser.save(function(error){
+                if(error){
+                console.log(error);
                 return;
             }
             else{
-                req.flash('success', 'You are now registered and can log in');
+                req.session.msg.push("This email is already in use");
                 res.redirect('/login');
             
               }
@@ -77,3 +64,35 @@ if (errors){
 });
 
 module.exports = router;
+
+/*
+let newUser = new User({
+    name:name,
+    email:email,
+    username:username,
+    password:password
+});
+
+newUser.save(function(err){
+    if(err){
+    console.log(err);
+    return;
+}
+else{
+    res.redirect('/login');
+
+  }
+});
+//const password2 =req.body.password2;
+check('name').not().isEmpty().withMessage('name is required.');
+check('email').not().isEmpty().withMessage('email is required.');
+check('username').not().isEmpty().withMessage('Body is required.');
+check('password').not().isEmpty().withMessage('Body is required.');
+check('password2').not().isEmpty().withMessage('Body is required.').equals(req.body.password);
+
+/*check('name', 'A valid firstname is required').notEmpty();
+check('email', 'A valid firstname is required').notEmpty();
+check('email', 'A valid firstname is required').isEmail();
+check('username', 'A valid firstname is required').notEmpty();
+check('password', 'A valid firstname is required').notEmpty();
+check('password2', 'A valid firstname is required').equals(req.body.password);*/
