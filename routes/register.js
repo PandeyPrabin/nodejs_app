@@ -42,7 +42,7 @@ if (errors){
    
 
     bcrypt.genSalt(10, function(error, salt){
-        bcrypt.hash(newUser.password, salt, function(err, hash){
+        bcrypt.hash(newUser.password, salt, function(error, hash){
             if(error){
                 console.log(error);
             }
@@ -53,7 +53,7 @@ if (errors){
                 return;
             }
             else{
-                req.session.msg.push("This email is already in use");
+                //req.session.msg.push("This email is already in use");
                 res.redirect('/login');
             
               }
@@ -64,35 +64,3 @@ if (errors){
 });
 
 module.exports = router;
-
-/*
-let newUser = new User({
-    name:name,
-    email:email,
-    username:username,
-    password:password
-});
-
-newUser.save(function(err){
-    if(err){
-    console.log(err);
-    return;
-}
-else{
-    res.redirect('/login');
-
-  }
-});
-//const password2 =req.body.password2;
-check('name').not().isEmpty().withMessage('name is required.');
-check('email').not().isEmpty().withMessage('email is required.');
-check('username').not().isEmpty().withMessage('Body is required.');
-check('password').not().isEmpty().withMessage('Body is required.');
-check('password2').not().isEmpty().withMessage('Body is required.').equals(req.body.password);
-
-/*check('name', 'A valid firstname is required').notEmpty();
-check('email', 'A valid firstname is required').notEmpty();
-check('email', 'A valid firstname is required').isEmail();
-check('username', 'A valid firstname is required').notEmpty();
-check('password', 'A valid firstname is required').notEmpty();
-check('password2', 'A valid firstname is required').equals(req.body.password);*/

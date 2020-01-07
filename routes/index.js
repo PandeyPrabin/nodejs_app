@@ -38,21 +38,24 @@ router.post('/insert', function (req, res,next) {
     `;
 
     let transporter = nodemailer.createTransport({
-        host: "smtp.mailtrap.io",
-        port: 2525,
+        host: "smtp.gmail.com",
+        port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-          user: "0aa05f7a8ab974", // generated ethereal user
-          pass: "cbf894d4cfed68"// generated ethereal password
+          user: "YourEmail", // generated ethereal user
+          pass: "YourEmailPassword"// generated ethereal password
+        },
+        tls:{
+            rejectUnauthorized:false
         }
       });
     
       // send mail with defined transport object
       var mailOptions={
-        from: '"Fred Foo 👻" <stormrider6225@gmail.com>', // sender address
-        to: "magarajit330@gmail.com", // list of receivers
+        from: '"Pandey 👻" <stormrider6225@gmail.com>', // sender address
+        to: req.body.content, // list of receivers
         subject: "Email test", // Subject line
-        text: "Hello world?", // plain text body
+        text: "Hello Dalle", // plain text body
         html: output // html body
       };
 
