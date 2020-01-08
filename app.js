@@ -3,6 +3,7 @@ var path = require('path');
 var nodemailer = require('nodemailer');
 var mongoose = require('mongoose');
 var expressValidator = require('express-validator');
+var expresslayouts = require('express-ejs-layouts');
 
 //const bcrypt = require('bcrypt');
 var app = express();
@@ -26,11 +27,10 @@ mongoose.connect(mongoDB, {
 });
 
 
-
-
-app.use(express.static(path.join(__dirname + '/static')));
+app.use('/public', express.static('public'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(expresslayouts);
 
 
 // Require all the route files
@@ -43,6 +43,9 @@ var login = require('./routes/login');
 app.use('/', index);
 app.use('/login', login);
 app.use('/register', register);
+app.get('/demo',function(req, res){
+	res.render('demo')
+})
 
 //starting the server
 app.listen(3001, function () {
