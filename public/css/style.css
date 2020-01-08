@@ -1,4 +1,4 @@
-<style>@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
     * {
       margin: 0;
       padding: 0;
@@ -8,7 +8,6 @@
       -webkit-font-smoothing: antialiased;
       -moz-font-smoothing: antialiased;
       -o-font-smoothing: antialiased;
-      font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
     
@@ -142,26 +141,3 @@
     :-ms-input-placeholder {
       color: #888;
     }
-    </style>
-    <button type="button" ><a href="/get-data">Details</a></button>
-    
-<div class="container">  
-    <form id="contact" action="/insert" method="post">
-     <h2>Welcome to the login page</h2>
-      
-      <h4>Contact us for custom quote</h4>
-<fieldset>
-        <input placeholder="Your Email Address" type="email" name='email' required >
-      </fieldset>
-      <fieldset>
-        <input placeholder="Your Password" type="tel"  name='password' required >
-      </fieldset>
-      <fieldset>
-        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Login</button>
-      </fieldset>
-      <fieldset>
-        <button> <a href = "/register/register">Register</a></button>
-      </fieldset>
-      <p class="copyright">Designed by <a href="https://colorlib.com" target="_blank" title="Colorlib">Colorlib</a></p>
-    </form>
-  </div>

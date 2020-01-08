@@ -12,10 +12,10 @@ router.get('/', function (req, res, next) {
 //Insert the data
 router.post('/insert', function (req, res,next) {
 
- /*   var data = {
-        title: req.body.title,
-        content: req.body.content,
-        author: req.body.author
+   var data = {
+        name: req.body.name,
+        email: req.body.email,
+        phonenumber: req.body.phonenumber
     }
     console.log(data);
 
@@ -25,15 +25,16 @@ router.post('/insert', function (req, res,next) {
         console.log('Data inserted!!!');
     });
 
-    res.redirect('/'); */
+    res.render('details'); 
 
-    var output = `
+    //this is to send the emails
+  /*  var output = `
     <p>You have a new contact request</p>
     <h2>Contact Details</h2>
     <ul>
-        <li>Title: ${req.body.title}</li>
-        <li>Title: ${req.body.content}</li>
-        <li>Title: ${req.body.author}</li>
+        <li>Title: ${req.body.name}</li>
+        <li>Title: ${req.body.email}</li>
+        <li>Title: ${req.body.phonenumber}</li>
     </ul>
     `;
 
@@ -53,7 +54,7 @@ router.post('/insert', function (req, res,next) {
       // send mail with defined transport object
       var mailOptions={
         from: '"Pandey 👻" <stormrider6225@gmail.com>', // sender address
-        to: req.body.content, // list of receivers
+        to: req.body.email, // list of receivers
         subject: "Email test", // Subject line
         text: "Hello Dalle", // plain text body
         html: output // html body
@@ -69,7 +70,7 @@ router.post('/insert', function (req, res,next) {
 
             res.render('index', {msg:'Email has been sent!!!'});
 
-    });
+    });*/
 });
 
 router.get('/get-data', function (req, res) {

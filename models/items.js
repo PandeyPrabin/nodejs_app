@@ -2,14 +2,14 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ItemSchema = new Schema({
-    title: {
+    name: {
       type: String,
       required: true
     },
-    content: {
+    email: {
       type: String,
     },
-    author: {
+    phonenumber: {
         type: String,
         
       },
